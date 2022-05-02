@@ -10,6 +10,7 @@ import * as cors from "cors";
 
 import { redis } from "./redis";
 import { createSchema } from "./utils/createSchema";
+import { graphqlUploadExpress } from "graphql-upload";
 
 const main = async () => {
   await createConnection();
@@ -32,6 +33,8 @@ const main = async () => {
       origin: `http://localhost:3000`,
     })
   );
+
+  app.use(graphqlUploadExpress());
 
   const sessionOption: session.SessionOptions = {
     store: new RedisStore({
