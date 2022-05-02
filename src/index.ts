@@ -7,6 +7,10 @@ import { createConnection } from "typeorm";
 import * as session from "express-session";
 import * as connectRedis from "connect-redis";
 import * as cors from "cors";
+import queryComplexity, {
+  simpleEstimator,
+  fieldExtensionsEstimator,
+} from "graphql-query-complexity";
 
 import { redis } from "./redis";
 import { createSchema } from "./utils/createSchema";
@@ -21,6 +25,21 @@ const main = async () => {
     schema,
     context: ({ req, res }: any) => ({ req, res }),
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+    validationRules: [
+      queryComplexity({
+        maximumComplexity: 8,
+        variables: {},
+        onComplete: (complexity: number) => {
+          console.log("Query Complexity:", complexity);
+        },
+        estimators: [
+          fieldExtensionsEstimator(),
+          simpleEstimator({
+            defaultComplexity: 1,
+          }),
+        ],
+      }) as any,
+    ],
   });
 
   const app = Express();
