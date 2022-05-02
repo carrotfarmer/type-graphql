@@ -329,6 +329,11 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
+"@faker-js/faker@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-6.2.0.tgz#6d836ee8a580589b60c9088a3bdb0b669a468825"
+  integrity sha512-3kIcQ+aTr3I+LqDbJwbINFk5oA+a63LH57GPJt9PM8AWqN7nCwnubuSiWosHYQlyf2NicrvpzXQxllyLeEdpyQ==
+
 "@graphql-tools/merge@8.2.10":
   version "8.2.10"
   resolved "https://registry.yarnpkg.com/@graphql-tools/merge/-/merge-8.2.10.tgz#fe2fe5ad33dc2d1b0af8751c0c08d18bb6bb6d88"
